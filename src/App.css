@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+.top{
+    height: 120px;
+    width: 100%;
+    background-color: #378658;
+    border-radius: 0px 15px 15px 15px;
+    position: fixed;
+    top: 0%;
+    
+}
+

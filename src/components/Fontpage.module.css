@@ -1,0 +1,72 @@
+.Fontpage{
+    margin-top: 150px;
+    height: auto;
+
+}
+.title{
+    color: white;
+    background-color: #378658;
+    border-radius: 20px;
+    font-size: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    text-align: center;
+}
+.maincontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.container{
+    margin-top: 30px;
+    border-radius: 20px;
+    background-color: #378658;
+    height: auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+.container div{
+    background-color: white;
+    border-radius: 20px;
+    height: 100px;
+    width: 250px;
+    margin-left: 25px;
+    margin-top: 10px;
+    align-content: center;
+    
+}
+.container div h1{
+    margin-left: 50px;
+}
+.container button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top:5px ;
+    padding-bottom: 5px;
+    width: 250px;
+    font-size: large;
+    margin-left: 25px;
+    background-color: #373B86;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+.container button:hover{
+    background-color:white;
+    color: #378658;
+}
+
+.bottom{
+    margin-top: 40px;
+    height: 50px;
+    width: 100vw;
+    background-color: #378658;
+    position: fixed;
+    bottom: 0%;
+    border-radius: 5px;
+}

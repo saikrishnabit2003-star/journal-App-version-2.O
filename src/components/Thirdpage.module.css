@@ -1,0 +1,67 @@
+.container{
+    margin-top: 120px;
+}
+.backButton {
+    background: none;       
+    border: none;          
+    cursor: pointer;
+    padding: 5px;
+}
+.backButton img {
+  width: 35px;  
+  height: 35px;
+  object-fit: contain;
+}
+.title{
+    margin-top: 30px;
+    color: white;
+    background-color: #378658;
+    border-radius: 20px;
+    font-size: 15px;
+    padding: 10px;
+    
+    text-transform: uppercase;
+    width: 95vw;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.main_cointainer{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap:20px;
+}
+.main_cointainer h2{
+    color: #373B86;
+    font-size: 35px;
+}
+.main_cointainer input{
+    border: 1px solid #373B86;
+    border-radius: 15px;
+    width: 90vw;
+    height: 90px;
+    justify-content: center;
+    align-items:center ; 
+    font-size: larger;
+    padding-left:15px;
+}
+.main_cointainer button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top:5px ;
+    padding-bottom: 5px;
+    width: 200px;
+    font-size: large;
+    background-color: #373B86;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+
+.main_cointainer button:hover{
+    background-color:#378658;
+    color: #fff;
+}

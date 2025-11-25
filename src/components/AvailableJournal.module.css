@@ -1,0 +1,169 @@
+.blockcontainer{
+    margin-top: 120px;
+    position: absolute;
+}
+.backButton {
+    background: none;       
+    border: none;          
+    cursor: pointer;
+    padding: 5px;
+}
+.backButton img {
+  width: 35px;  
+  height: 35px;
+  object-fit: contain;
+}
+.searchContainer form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.searchContainer form input{
+    border: 1px solid #373B86;
+    border-radius: 15px;
+    width: 90vw;
+    height: 80px;
+    justify-content: center;
+    align-items:center ; 
+    font-size: larger;
+    text-align: center;
+}
+.searchContainer form button{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-top:10px ;
+    padding-bottom: 10px;
+    width: 200px;
+    font-size: large;
+    background-color: #373B86;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+.searchContainer form button:hover{
+    background-color: #464cbb;
+}
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;   
+    align-items: center;
+    gap: 15px;                         
+    /* margin-top: 20px; */
+}
+.buttonContainer button{
+    margin: 10px;
+    padding-top:5px ;
+    padding-bottom: 5px;
+    width: 150px;
+    font-size: large;
+    background-color: #373B86;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+.buttonContainer button:hover{
+    background-color:#378658;
+    color: #fff;
+}
+.tableContainer{
+    
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.tableContainer table{
+    width: 90vw;
+    height: auto;
+}
+.tableContainer table tr th{
+    /* justify-content: space-evenly;
+    align-content: space-evenly; */
+    background-color: #378658;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+}
+.jornaldata{
+    border:1px solid #378658;
+    color: #378658;
+    text-align: center;
+    border-radius: 20px 0px 0px 20px;
+}
+.jornalname{
+    border:1px solid #378658;
+    color: #373B86;
+    text-align: center;
+    border-left: none;
+    border-right: none;
+    padding: 10px;
+}
+.jornalscore{
+    border:1px solid #378658;
+    color: #373B86;
+    text-align: center;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.menuContainer{
+    position: absolute;
+    /* border: 1px solid black; */
+    border-radius: 20px ;
+    height: auto;
+    width: 40vw;
+    margin-left: 20px;
+    padding: 5px;
+    font-size: 20px;
+    background-color:rgba(239, 237, 238, 0.8);
+    color: #378658;
+    font-weight: bolder;
+}
+#menu{
+    width: 50px;
+    margin: 10px;
+    
+}
+#submenu{
+    margin: 5px; 
+    margin-left: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+#submenu label{
+    margin:5px;
+    color: #373B86;
+    padding: 5px;
+    font-weight: normal;
+}
+
+.actualTable{
+    margin-top: 20px;
+    
+   
+}
+.actualTable div{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.actualTableTag{
+    width: 98vw;
+    overflow-wrap: normal;
+}
+.actualTableTag tr th{
+    
+    background-color: #378658;
+    color: white;
+    padding: 20px;
+    border-radius:10px ;
+    text-align: center;
+}
+.actualTableTag tr{
+    margin-top: 5px;
+}
+.actualTableTag tr td{
+    border: 1px solid #378658;
+    color: #373B86;
+    padding: 10px;
+    text-align: center;
+}

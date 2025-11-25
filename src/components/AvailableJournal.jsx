@@ -1,0 +1,272 @@
+import { useNavigate } from "react-router-dom";
+import style from "./AvailableJournal.module.css";
+import backButton from "../assets/backbtn.png";
+import { useState } from "react";
+
+export default function AvailableJournal() {
+  const nav = useNavigate();
+
+  const [search, setSearch] = useState("");
+  const [TableData, setTableData] = useState([]);
+  const [showMenu, setShowMenu] = useState(false);
+  const [showTable, setShowTable] = useState(false);
+  const [selectedRadio, setSelectedRadio] = useState(null);
+
+  const [filters, setFilters] = useState({
+    Journal_Login_Status: [],
+    Index: [],
+    SI_Open: [],
+    JCR_Ranking: [],
+    UAE_Ranking: [],
+    LetPub: [],
+    SCIMAGO_Ranking: [],
+  });
+
+  const mainItems = [
+    "Journal_Login_Status",
+    "Index",
+    "SI_Open",
+    "JCR_Ranking",
+    "UAE_Ranking",
+    "LetPub",
+    "SCIMAGO_Ranking",
+  ];
+
+  const subFilters = {
+    Journal_Login_Status: [
+      "Code Needed",
+      "Code not possible",
+      "Not possible",
+      "Working",
+      "Not Working",
+    ],
+    Index: [
+      "ABI",
+      "EI",
+      "Google Scholar",
+      "Google_Scholar",
+      "N/A",
+      "Non indexed journal",
+      "SCIE",
+      "Scopus",
+      "SIE",
+      "SSCI",
+    ],
+    SI_Open: [
+      "Cancelled",
+      "Closed",
+      "Completed",
+      "Dropped",
+      "Offline",
+      "Open",
+      "Out Of Control",
+      "Predatory",
+      "SI Cancelled",
+      "Soon",
+      "Suspended",
+    ],
+    JCR_Ranking: [
+      "(Q1,Q2)",
+      "(Q1.Q2)",
+      "(Q2,Q3)",
+      "(Q2.Q3)",
+      "(Q3,Q4)",
+      "(Q3.Q4)",
+      "N/A",
+      "Q1",
+      "Q1,Q2",
+      "Q2",
+      "Q2, Q3",
+      "Q2,Q3",
+      "Q3",
+      "Q3,Q4",
+      "Q4",
+    ],
+    UAE_Ranking: [
+      "(Q1,Q2)",
+      "(Q1.Q2)",
+      "(Q2.Q3)",
+      "(Q3,Q4)",
+      "(Q3.Q4)",
+      "N/A",
+      "Q1",
+      "Q1,Q2",
+      "Q2",
+      "Q2, Q3",
+      "Q2,Q3",
+      "Q3",
+      "Q3,Q4",
+      "Q4",
+    ],
+    LetPub: ["N/A", "Zone 1", "Zone 2", "Zone 3", "Zone 4"],
+    SCIMAGO_Ranking: ["N/A", "Q1", "Q2", "Q3", "Q4"],
+  };
+
+  // Handle input typing
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+    setShowTable(false);
+  };
+
+  // FETCH API on Button Click
+  const handleFetch = (e) => {
+    e.preventDefault();
+
+    fetch("https://jsonplaceholder.typicode.com/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userInput: search }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setTableData(Array.isArray(data) ? data : []);
+        setShowTable(true);
+      })
+      .catch((err) => console.log("Error:", err));
+  };
+
+  // Filter selection
+  const handleRadioClick = (item) => {
+    setSelectedRadio(selectedRadio === item ? null : item);
+  };
+
+  const handleCheckbox = (radio, filter) => {
+    setFilters((prev) => {
+      const isSelected = prev[radio].includes(filter);
+      return {
+        ...prev,
+        [radio]: isSelected
+          ? prev[radio].filter((f) => f !== filter)
+          : [...prev[radio], filter],
+      };
+    });
+  };
+
+  // Apply Filters
+  const handleApplyFilters = () => {
+    setShowTable(true);
+  };
+
+  // Filtered data
+  const filteredData = TableData.filter((item) => {
+    return Object.keys(filters).every((key) => {
+      if (filters[key].length === 0) return true;
+      return filters[key].includes(item[key]);
+    });
+  });
+
+  return (
+    <div className={style.blockcontainer}>
+      <button onClick={() => nav("/Thirdpage")} className={style.backButton}>
+        <img src={backButton} alt="Back" />
+      </button>
+
+      <div className={style.searchContainer}>
+        <form>
+          <input
+            type="text"
+            placeholder="Enter text"
+            value={search}
+            onChange={handleSearchChange}
+          />
+          <button onClick={handleFetch}>Available journals</button>
+        </form>
+
+        <div className={style.buttonContainer}>
+          <button type="button" onClick={() => setShowMenu(!showMenu)}>
+            Filter
+          </button>
+          <button type="button" onClick={handleApplyFilters}>
+            Apply Filters
+          </button>
+        </div>
+      </div>
+
+      {/* Filter Menu */}
+      {showMenu && (
+        <div className={style.menuContainer}>
+          <div className="main-row">
+            {mainItems.map((item) => (
+              <div key={item} className="main-item">
+                <label>
+                  <input
+                    type="radio"
+                    checked={selectedRadio === item}
+                    onChange={() => handleRadioClick(item)}
+                  />
+                  {item}
+                </label>
+
+                {selectedRadio === item && (
+                  <div className="submenu" id={style.submenu}>
+                    {subFilters[item].map((filter) => (
+                      <label key={filter}>
+                        <input
+                          type="checkbox"
+                          checked={filters[item].includes(filter)}
+                          onChange={() => handleCheckbox(item, filter)}
+                        />
+                        {filter}
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* TABLE */}
+      {showTable && (
+        <div className={style.actualTable}>
+          <table className={style.actualTableTag}>
+            <thead>
+              <tr>
+                <th>Journal_Name</th>
+                <th>Special_Issue_Name</th>
+                <th>Journal_Website</th>
+                <th>Journal_Login_Status</th>
+                <th>SI_Open</th>
+                <th>Index</th>
+                <th>JCR_Ranking</th>
+                <th>UAE_Ranking</th>
+                <th>LetPub</th>
+                <th>SCIMAGO_Ranking</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {filteredData.length > 0 ? (
+                filteredData.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.Journal_Name}</td>
+                    <td>{item.Special_Issue_Name}</td>
+                    <td>
+                      <a href={item.Journal_Website}>{item.Journal_Website}</a>
+                    </td>
+                    <td>{item.Journal_Login_Status}</td>
+                    <td>{item.SI_Open}</td>
+                    <td>{item.Index}</td>
+                    <td>{item.JCR_Ranking}</td>
+                    <td>{item.UAE_Ranking}</td>
+                    <td>{item.LetPub}</td>
+                    <td>{item.SCIMAGO_Ranking}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="10" style={{ textAlign: "center" }}>
+                    No matching data
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
