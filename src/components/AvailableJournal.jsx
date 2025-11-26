@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function AvailableJournal() {
   const nav = useNavigate();
+const [rowsLimit, setRowsLimit] = useState(5);
 
   const [search, setSearch] = useState("");
   const [TableData, setTableData] = useState([]);
@@ -117,16 +118,17 @@ export default function AvailableJournal() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title: search }),
+      body: JSON.stringify({ title: search,top_k:rowsLimit}),
     })
-      .then((res) => res.json())
+      .then((res) =>res.json())
       .then((data) => {
-        setTableData(Array.isArray(data) ? data : []);
+        
+        setTableData(Array.isArray(data.data) ? data.data : []);
         setShowTable(true);
       })
       .catch((err) => console.log("Error:", err));
   };
-
+  
   // Filter selection
   const handleRadioClick = (item) => {
     setSelectedRadio(selectedRadio === item ? null : item);
@@ -144,13 +146,11 @@ export default function AvailableJournal() {
     });
   };
 
-  // Apply Filters
-  const handleApplyFilters = () => {
-    setShowTable(true);
-  };
+console.log(rowsLimit);
 
   // Filtered data
   const filteredData = TableData.filter((item) => {
+    console.log(item);
     return Object.keys(filters).every((key) => {
       if (filters[key].length === 0) return true;
       return filters[key].includes(item[key]);
@@ -165,12 +165,26 @@ export default function AvailableJournal() {
 
       <div className={style.searchContainer}>
         <form>
-          <input
-            type="text"
-            placeholder="Enter text"
-            value={search}
-            onChange={handleSearchChange}
-          />
+          <div>
+                <input
+                type="text"
+                placeholder="Enter text"
+                value={search}
+                required
+                onChange={handleSearchChange} 
+              />
+                    
+            <select
+              value={rowsLimit}
+              onChange={(e) => setRowsLimit(Number(e.target.value))}
+            >
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={40}>40</option>
+              <option value={50}>50</option>
+            </select>
+        </div>
           <button onClick={handleFetch}>Available journals</button>
         </form>
 
@@ -178,9 +192,9 @@ export default function AvailableJournal() {
           <button type="button" onClick={() => setShowMenu(!showMenu)}>
             Filter
           </button>
-          <button type="button" onClick={handleApplyFilters}>
+          {/* <button type="button" onClick={handleApplyFilters}>
             Apply Filters
-          </button>
+          </button> */}
         </div>
       </div>
 
@@ -222,7 +236,7 @@ export default function AvailableJournal() {
       {/* TABLE */}
       {showTable && (
         <div className={style.actualTable}>
-          <table className={style.actualTableTag}>
+          <table className={style.actualTableTag} >
             <thead>
               <tr>
                 <th>Journal_Name</th>

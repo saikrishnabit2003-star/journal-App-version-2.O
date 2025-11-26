@@ -13,21 +13,41 @@
   height: 35px;
   object-fit: contain;
 }
+.searchContainer{
+    width: 100vw;
+    justify-content: center;
+    
+}
 .searchContainer form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.searchContainer form input{
+.searchContainer form div{
+    justify-content: center;
+}
+.searchContainer form div input{
     border: 1px solid #373B86;
     border-radius: 15px;
-    width: 98vw;
+    width: 60vw;
     height: 80px;
     justify-content: center;
     align-items:center ; 
     font-size: larger;
     text-align: center;
+}
+
+.searchContainer form div select{
+    padding: 5px;
+    margin-left: 5px;
+    height: 80px;
+    width: 30vw;
+    border-radius: 15px;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    
 }
 .searchContainer form button{
     margin-top: 10px;
@@ -106,7 +126,7 @@
 }
 
 .menuContainer{
-    position: absolute;
+    
     /* border: 1px solid black; */
     border-radius: 20px ;
     height: auto;
@@ -117,6 +137,8 @@
     background-color:rgba(239, 237, 238, 0.8);
     color: #378658;
     font-weight: bolder;
+    position: relative; /* keeps filters above */
+    z-index: 10;
 }
 #menu{
     width: 50px;
@@ -140,23 +162,29 @@
 .actualTable{
     margin-top: 20px;
     width: 98vw;
-   
+    max-height: 550px; /* adjust height as you want */
+    overflow-y: auto;
+    display: block;
 }
 .actualTable div{
     padding-left: 10px;
     padding-right: 10px;
+    
 }
 .actualTableTag{
     width: 98vw;
     overflow-wrap:anywhere;
+    overflow: scroll;
 }
 .actualTableTag tr th{
-    
+   
     background-color: #378658;
     color: white;
     padding: 20px;
     border-radius:10px ;
     text-align: center;
+    position: sticky;
+    top: 0%;
 }
 .actualTableTag tr{
     margin-top: 5px;
