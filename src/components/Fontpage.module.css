@@ -4,6 +4,7 @@
     height: 100%;
     width: 100%;
     row-gap: 15px;
+    cursor: pointer;
 }
 
 
@@ -131,13 +132,11 @@
 .detcontainer h1{
     text-align: center;
 }
-.detcontainer div{
-    margin-top: 5px;
-}
 .detcontainer div ul{
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
-    row-gap: 5px;
+    row-gap: 25px;
 }
 /* .container div h1{
     font-size: medium;
@@ -164,7 +163,7 @@
 
 /* footer part */
 .bottom{
-    height: 80px;
+    height: 50px;
     width: 100%;
     background-color: #3793c4;
     position: fixed;

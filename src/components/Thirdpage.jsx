@@ -39,9 +39,12 @@ export default function Thirdpage(){
                                                     <h1>Available Journal</h1>
                                                      <div>
                                                         <ul>
-                                                            <li>Upload a .csv file containing the titles and identifiers of the journals you have available.</li>
-                                                            <li>The file must use standard CSV format with Journal Name and ISSN as headers, separated by commas.</li>
-                                                            <li>The maximum accepted file size is 20MB.</li>
+                                                            <li>Enter the title in this field to get suggested journals: Type your title to receive relevant journal suggestions.
+
+</li>
+                                                            <li>Select the number of journals needed: Choose how many journals you need for your research.
+</li>
+                                                            <li>Select the appropriate journal to proceed: Pick the most relevant journal from the suggested list.</li>
                                                         </ul>
                                                 </div>
                                                 </div>
@@ -55,9 +58,11 @@ export default function Thirdpage(){
                                                     <h1>Associate Editor</h1>
                                                      <div>
                                                         <ul>
-                                                            <li>Upload a .csv file containing the titles and identifiers of the journals you have available.</li>
-                                                            <li>The file must use standard CSV format with Journal Name and ISSN as headers, separated by commas.</li>
-                                                            <li>The maximum accepted file size is 20MB.</li>
+                                                            <li>Login using ID and password: Access the system by logging in with your ID and password.
+</li>
+                                                            <li>Enter the title: Input the title to search for relevant journals.
+</li>
+                                                            <li>Select the appropriate journal to proceed: Pick the most relevant journal from the  suggested list.</li>
                                                         </ul>
                                                 </div>
                                                 </div>
