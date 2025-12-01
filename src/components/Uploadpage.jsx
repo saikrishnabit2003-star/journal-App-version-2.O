@@ -1,71 +1,159 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import style from "./Upload.module.css"
-import backButton from "../assets/backbtn.png"
+import backButton from "../assets/back.png"
+import Logo from "../assets/logo.png"
+import text from "../assets/logo_text.png"
+import { useState } from "react"
 export default function Uploadpage() {
 
     const nav=useNavigate()
-    const backendPath="http://localhost:5000/upload"
+    // const val=false;
+    const [loading, setLoading] = useState(false);
+    const [file, setFile] = useState(null);
+    const [msg, setMsg] = useState("");
 
-    async function succesmsg() {
+    const logout = () => {
+  localStorage.removeItem("auth");
+  nav("/", { replace: true });
+};
 
-  const fileInput = document.getElementById("fileInput");
-  const file = fileInput.files[0];
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
 
+  const handleUpload = (e) => {
+  e.preventDefault();
   if (!file) {
-    alert("Please select a CSV file");
+    alert("Please select a file");
     return;
   }
 
-  let heading = document.createElement("h1");
-  heading.innerText = "Success";
+  setLoading(true);
+  setMsg("");
 
-  let msg = document.getElementById("msg");
-  msg.innerHTML = "";
-  msg.appendChild(heading);
-
-  const formData = new FormData();
+  var formData = new FormData();
   formData.append("file", file);
 
-  try {
-    const res = await fetch(backendPath, {
-      method: "POST",
-      body: formData,
-    });
+  fetch("http://13.219.182.76:8000/uploadfile-Journal/", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Journal Upload Success:", data);
+      setMsg(data.message);
+    })
+    .catch((error) => {
+      console.error("Upload Error:", error);
+      setMsg("Upload failed");
+    })
+    .finally(() => setLoading(false));
+};
 
-    const data = await res.json();
-    console.log("Upload success:", data);
-  } catch (error) {
-    console.error("Upload failed:", error);
+console.log(loading,msg)
+  // Associate Editor
+  const [assfile, asssetFile] = useState(null);
+  const asshandleFileChange = (e) => {
+    asssetFile(e.target.files[0]);
+  };
+
+  const asshandleUpload = (e) => {
+  e.preventDefault();
+  if (!assfile) {
+    alert("Please select a file");
+    return;
   }
-}
+
+  setLoading(true);
+  setMsg("");
+
+  var formDatas = new FormData();
+  formDatas.append("file", assfile);
+
+  fetch("http://13.219.182.76:8000/upload-Assosiate/", {
+    method: "POST",
+    body: formDatas,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Associate Upload Success:", data);
+      setMsg(data.message);
+    })
+    .catch((error) => {
+      console.error("Upload Error:", error);
+      setMsg("Upload failed");
+    })
+    .finally(() => setLoading(false));
+};
+
+
 
     return (
-        <div className={style.uploadcontainer}>
-        <button onClick={()=>nav("/")} className={style.backButton}><img src={backButton}alt="Back" /></button>
-        
-        <div className={style.title}>
-            <h1>UPLOAD DATA</h1>
+       <>
+       <div className={style.page}>
+
+        {/* header */}
+        <div className={style.header}>
+          <div className={style.top}>
+              <img src={Logo} alt="Logo" />
+              <img src={text} alt="Text-logo" />
+              <button id={style.logbtn} onClick={logout}>Log out</button>
+          </div>
         </div>
 
-        <div className={style.maincontainer}>
-                        <div>
-                            <div className={style.uploadspace}>
-                                <div>
-                                <div class={style.droparea}>
-                                    <p>csv here!!</p>
-                                    <form>
-                                        <input type="file" id="fileInput" accept=".csv" />
-                                    </form>
-                                </div>
-                                        </div>
-                                        
-                                <button class="upload-btn" onClick={succesmsg}>Upload</button>
-                            </div>
-                            <div className={style.success} id="msg"></div>
-                        </div>
-                    
-        </div>
-        <div className={style.bottom}></div>
-        </div>
+        {/* body */}
+        <div className={style.body}>
+          <div>
+            <button onClick={()=>nav("/")} className={style.backButton}><img src={backButton}alt="Back" /></button>
+          </div>
+
+          <div className={style.maincontainer}>
+                  <div className={style.uploadspace}>
+                    <h2>Upload Journal File</h2>
+                      <div>
+                          <div className={style.droparea}>
+                              <p>{file ? file.name : "csv here!!"}</p>
+                              <form>
+                                  <input type="file" id="fileInput" accept=".xlsx , .csv" onChange={handleFileChange}/>
+                                  <button className="upload-btn" onClick={handleUpload} >Upload</button>
+                              </form>
+                          </div>
+                        </div>  
+                  </div>
+            </div>
+            <div className={style.maincontainer}>
+                  <div className={style.uploadspace}>
+                    <h2>Upload Associate  File</h2>
+                      <div>
+                          <div className={style.droparea}>
+                              <p>{assfile ? assfile.name : "csv here!!"}</p>
+                              <form>
+                                  <input type="file" id="fileInput" accept=".xlsx , .csv" onChange={asshandleFileChange}/>
+                                  <button className="upload-btn" onClick={asshandleUpload} >Upload</button>
+                              </form>
+                          </div>
+                        </div>  
+                  </div>
+            </div>
+            {loading ? (
+<div className={style.loader}></div>
+) : (
+  msg && (
+    <div className={style.message}>
+      <h2>{msg}</h2>
+    </div>
+  )
+)}
+
+
+
+       </div>
+       {/* footer */}
+          <div className={style.bottom}></div>
+      
+      
+      
+      </div>
+       </>
     )
 }

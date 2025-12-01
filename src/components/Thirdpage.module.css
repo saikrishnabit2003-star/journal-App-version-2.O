@@ -1,4 +1,165 @@
+.page{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    row-gap: 15px;
+}
+
+
+.top{
+    height: 120px;
+    width: 100%;
+    border: none;              
+    border-bottom: 2px solid black;
+    outline: none;              
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   
+}
+.top img{
+    height: 100px;
+    width: auto;
+   align-self: center;
+}
+#logbtn{
+    width: 120px;
+    height: 40px;
+    align-self: center;
+    border: 2px solid red;
+    background-color:transparent;
+    color: red;
+    margin-right: 15px;
+    border-radius: 20px;
+    font-size: large;
+    font-weight: 600
+}
+#logbtn:hover{
+    background-color: #ff0505;
+    color: white;
+}
+
+
+
+.body{
+    height: 40vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    position: relative;
+    /* row-gap: 20px; */
+    /* overflow: auto; */
+}
+
+/* body part */
+.title{
+    position: relative;
+    top:0%;
+    text-align: center;
+    width: 98vw;
+    background-color:#3793c4;
+    border-radius: 25px;
+    color: white;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.title marquee {
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.main_cointainer{
+
+    display: flex;
+    flex-direction: row;
+    height: 300px;
+    /* column-gap: 15px; */
+    width: 98vw;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    
+}
 .container{
+    margin-top: 250px;
+    border-radius: 20px;
+    background:linear-gradient(#3793c4,#10366e) ;
+    height: 500px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    cursor: pointer;
+    box-shadow: 0 15px 10px rgba(0,0,0,0.3);
+}
+.btncontainer button{
+    height: 100px;
+    width: 250px;
+    border-radius: 20px;
+    border: none;
+    font-size: larger;
+    color: #10366e;
+    font-weight: bold;
+}
+.btncontainer button:hover{
+    background-color: #767779;
+    color: white;
+}
+.detcontainer{
+    /* margin-bottom:150px; */
+    background-color:transparent;
+    color: white;
+    border-radius: 20px;
+    height: 300px;
+    width: 280px; 
+}
+.detcontainer h1{
+    text-align: center;
+}
+.detcontainer div{
+    margin-top: 5px;
+}
+.detcontainer div ul{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.backButton {
+    background: none;       
+    border: none;     
+    cursor: pointer;
+    padding: 5px;
+}
+.backButton img {
+  width: 100px;  
+  height: 40px;
+  object-fit: contain;
+  
+}
+
+
+/* footer part */
+.bottom{
+    height: 80px;
+    width: 100%;
+    background-color: #3793c4;
+    position: fixed;
+    bottom: 0%;
+}
+
+
+
+
+
+/* .container{
     margin-top: 120px;
 }
 .backButton {
@@ -118,4 +279,4 @@
     position: fixed;
     bottom: 0%;
     border-radius: 5px;
-}
+} */

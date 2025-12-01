@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import style from "./AvailableJournal.module.css";
-import backButton from "../assets/backbtn.png";
+import backButton from "../assets//back.png";
+import Logo from "../assets/logo.png"
+import text from "../assets/logo_text.png"
 import { useState } from "react";
 
 export default function AvailableJournal() {
@@ -12,6 +14,7 @@ const [rowsLimit, setRowsLimit] = useState(5);
   const [showMenu, setShowMenu] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [selectedRadio, setSelectedRadio] = useState(null);
+
 
   const [filters, setFilters] = useState({
     Journal_Login_Status: [],
@@ -113,7 +116,7 @@ const [rowsLimit, setRowsLimit] = useState(5);
   const handleFetch = (e) => {
     e.preventDefault();
 
-    fetch("http://13.219.182.76:8000/forward-topic/", {
+    fetch("http://13.219.182.76:8000/forward-topic/jornal", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -157,84 +160,112 @@ console.log(rowsLimit);
     });
   });
 
+
+  const logout = () => {
+  localStorage.removeItem("auth");
+  nav("/", { replace: true });
+};
   return (
-    <div className={style.blockcontainer}>
-      <button onClick={() => nav("/Thirdpage")} className={style.backButton}>
-        <img src={backButton} alt="Back" />
-      </button>
-
-      <div className={style.searchContainer}>
-        <form>
-          <div>
-                <input
-                type="text"
-                placeholder="Enter text"
-                value={search}
-                required
-                onChange={handleSearchChange} 
-              />
-                    
-            <select
-              value={rowsLimit}
-              onChange={(e) => setRowsLimit(Number(e.target.value))}
-            >
-              <option value={10}>10</option>
-              <option value={20}>20</option>
-              <option value={30}>30</option>
-              <option value={40}>40</option>
-              <option value={50}>50</option>
-            </select>
-        </div>
-          <button onClick={handleFetch}>Available journals</button>
-        </form>
-
-        <div className={style.buttonContainer}>
-          <button type="button" onClick={() => setShowMenu(!showMenu)}>
-            Filter
-          </button>
-          {/* <button type="button" onClick={handleApplyFilters}>
-            Apply Filters
-          </button> */}
-        </div>
-      </div>
-
-      {/* Filter Menu */}
-      {showMenu && (
-        <div className={style.menuContainer}>
-          <div className="main-row">
-            {mainItems.map((item) => (
-              <div key={item} className="main-item">
-                <label>
-                  <input
-                    type="radio"
-                    checked={selectedRadio === item}
-                    onChange={() => handleRadioClick(item)}
-                  />
-                  {item}
-                </label>
-
-                {selectedRadio === item && (
-                  <div className="submenu" id={style.submenu}>
-                    {subFilters[item].map((filter) => (
-                      <label key={filter}>
-                        <input
-                          type="checkbox"
-                          checked={filters[item].includes(filter)}
-                          onChange={() => handleCheckbox(item, filter)}
-                        />
-                        {filter}
-                      </label>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+    <div className={style.page}>
+        {/* header */}
+        <div className={style.header}>
+          <div className={style.top}>
+              <img src={Logo} alt="Logo" />
+              <img src={text} alt="Logo" />
+              {/* <h1>Journal Suggestion Application</h1> */}
+              <button id={style.logbtn} onClick={logout}>Log out</button>
           </div>
         </div>
-      )}
 
-      {/* TABLE */}
-      {showTable && (
+        <div className={style.body}>
+
+          <button onClick={() => nav("/Thirdpage")} className={style.backButton}>
+            <img src={backButton} alt="Back" />
+          </button>
+
+          {/* search area */}
+          <div>
+              <div className={style.searchContainer}>
+                <form>
+                  <div>
+                        <input
+                        type="text"
+                        placeholder="Enter text"
+                        value={search}
+                        required
+                        onChange={handleSearchChange} 
+                      />
+                            
+                  <select
+                    value={rowsLimit || ""}   // allow empty placeholder
+                    onChange={(e) => setRowsLimit(Number(e.target.value))}
+                  >
+                    {/* Placeholder */}
+                    
+
+                    <optgroup label="No. of Rows">
+                      {/* <option value={""} >Select number of rows</option> */}
+                      <option value={""} hidden>Select number of rows</option>
+                      <option value={10}>10</option>
+                      <option value={20}>20</option>
+                      <option value={30}>30</option>
+                      <option value={40}>40</option>
+                      <option value={50}>50</option>
+                    </optgroup>
+                  </select>
+                </div>
+                  <button onClick={handleFetch}>Available journals</button>
+                </form>
+
+                <div className={style.buttonContainer}>
+                  <button type="button" onClick={() => setShowMenu(!showMenu)}>
+                    Filter
+                  </button>
+                  {/* <button type="button" onClick={handleApplyFilters}>
+                    Apply Filters
+                  </button> */}
+                </div>
+              </div>
+
+              {/* Filter Menu */}
+              {showMenu && (
+                <div className={style.menuContainer}>
+                  <div className={style.mainrow}>
+                    {mainItems.map((item) => (
+                      <div key={item} className={style.mainitem}>
+                        <label>
+                          <input
+                            type="radio"
+                            checked={selectedRadio === item}
+                            onClick={() => handleRadioClick(item)}readOnly
+                          />
+                          {item}
+                        </label>
+
+                        {selectedRadio === item && (
+                          <div className="submenu" id={style.submenu}>
+                            {subFilters[item].map((filter) => (
+                              <label key={filter}>
+                                <input
+                                  type="checkbox"
+                                  checked={filters[item].includes(filter)}
+                                  onChange={() => handleCheckbox(item, filter)}
+                                />
+                                {filter}
+                              </label>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+          </div>
+
+          {/* table */}
+          <div>
+            {showTable && (
         <div className={style.actualTable}>
           <table className={style.actualTableTag} >
             <thead>
@@ -283,6 +314,36 @@ console.log(rowsLimit);
           </table>
         </div>
       )}
-    </div>
+          </div>
+
+        </div>
+
+        {/* footer */}
+        <div className={style.bottom}></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>    
   );
 }
