@@ -1,28 +1,16 @@
 import { useNavigate } from "react-router-dom"
 import style from "./Fontpage.module.css"
-import Logo from "../assets/logo.png"
-import text from "../assets/logo_text.png"
+
 
 export default function Fontpage(){
     const nav=useNavigate()
-    const logout = () => {
-  localStorage.removeItem("auth");
-  nav("/", { replace: true });
-};
+    
 
     return(
         <>
         <div className={style.page}>
 
-            {/* header */}
-        <div className={style.header}>
-          <div className={style.top}>
-              <img src={Logo} alt="Logo" />
-              <img src={text} alt="Logo" />
-              {/* <h1>Journal Suggestion Application</h1> */}
-              <button id={style.logbtn} onClick={logout}>Log out</button>
-          </div>
-        </div>
+            
             
 
             {/* body */}
@@ -74,8 +62,7 @@ export default function Fontpage(){
             </div>
 
 
-            {/* footer */}
-            <div className={style.bottom}></div>
+            
 
 
 

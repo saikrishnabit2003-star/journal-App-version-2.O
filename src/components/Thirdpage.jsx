@@ -1,28 +1,16 @@
 import { Link, useNavigate } from "react-router-dom"
 import style from './Thirdpage.module.css'
-import Logo from "../assets/logo.png"
-import text from "../assets/logo_text.png"
 import backButton from '../assets/back.png'
 export default function Thirdpage(){
     const nav=useNavigate()
     
-    const logout = () => {
-  localStorage.removeItem("auth");
-  nav("/", { replace: true });
-};
+
 
     return (
         <>
         <div className={style.page}>
 
-                    {/* header */}
-                    <div className={style.header}>
-                      <div className={style.top}>
-                          <img src={Logo} alt="Logo" />
-                          <img src={text} alt="text-Logo" />
-                          <button id={style.logbtn} onClick={logout}>Log out</button>
-                      </div>
-                    </div>
+                    
 
 
                     {/* Body */}
@@ -52,7 +40,7 @@ export default function Thirdpage(){
                                         </div>
                                     <div className={style.container}>
                                                 <div className={style.btncontainer}>
-                                                    <button onClick={()=>nav("/AssociateEditor")}>AssociateEditor</button>
+                                                    <button onClick={()=>nav("/AssociateEditor")}>Associate Editor</button>
                                                 </div>
                                                 <div className={style.detcontainer}>
                                                     <h1>Associate Editor</h1>
@@ -70,8 +58,7 @@ export default function Thirdpage(){
                                         </div>
                                 </div>
                     </div>
-            <div className={style.bottom}></div>
-
+        
         </div>
         </>
     )

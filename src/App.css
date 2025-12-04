@@ -4,3 +4,18 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Arial, sans-serif;
 }
+/* Hide scrollbar for Chrome, Edge & Safari */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+body {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for IE & older versions */
+body {
+  -ms-overflow-style: none;
+}
+
