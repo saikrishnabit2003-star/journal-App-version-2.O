@@ -1,5 +1,5 @@
 import Logo from "./assets/logo.png"
-import text from "./assets/logo_text.png"
+import text from "./assets/text_logo.png"
 import "./Header.css"
 
 function Header({ setIsLoggedIn }) {
