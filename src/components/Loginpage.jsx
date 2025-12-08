@@ -14,7 +14,7 @@ function Loginpage({ setIsLoggedIn }) {   // ⭐ Receive prop
   const auth = (e) => {
     e.preventDefault();
 
-    if (name === username && password === pass) {
+    if (name.toLowerCase() === username.toLowerCase() && password === pass) {
       localStorage.setItem("authToken", "my-fixed-token-12345");  //  Save token
       setIsLoggedIn(true);                                        //  Update app state
       nav("/Homepage");                                       
