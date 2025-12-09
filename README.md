@@ -1,16 +1,85 @@
-# React + Vite
+📘 Journal Suggestion Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend Module — Developed with Vite + React
 
-Currently, two official plugins are available:
+<p align="center"> <img src="./public/logo.png" width="120" alt="App Logo" /> </p>
+🔧 Tech Badges
+<p align="center"> <img src="https://img.shields.io/badge/Vite-Frontend-blue" /> <img src="https://img.shields.io/badge/React-18.0+-61DAFB?logo=react&logoColor=white" /> <img src="https://img.shields.io/badge/LocalStorage-Auth-orange" /> <img src="https://img.shields.io/badge/License-MIT-green" /> </p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📝 Overview
 
-## React Compiler
+The Journal Suggestion Application allows users to log in, upload journal data, download templates, and manage journal information. This version includes only the frontend implementation with localStorage-based authentication for a single user.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+✨ Key Features
 
-## Expanding the ESLint configuration
+✔ Single user login using localStorage
+✔ Journal file upload & template download
+✔ Modern and responsive UI
+✔ Error handling for invalid data
+✔ Fast build with Vite
+✔ React Router navigation management
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🛠️ Installation & Setup
+git clone <repo_url>
+cd journal-frontend
+
+npm install
+npm run dev
+
+Build for production:
+
+npm run build
+
+🔐 Authentication Flow
+
+LocalStorage stores login state
+
+No multi-user handling
+
+Redirects automatically if already logged in
+Example:
+
+localStorage.setItem("user", "active");
+
+
+Logout:
+
+localStorage.removeItem("user");
+🚀 Deployment on AWS EC2 + Nginx
+1️⃣ Install Dependencies on Server
+sudo apt update
+sudo apt install nginx
+sudo apt install nodejs npm -y
+
+2️⃣ Upload Build Files
+npm run build
+scp -r dist/* ubuntu@server_ip:/var/www/html/
+
+3️⃣ Configure Nginx
+sudo nano /etc/nginx/sites-available/default
+
+
+Set the config:
+
+server {
+    listen 80;
+    root /var/www/html;
+    index index.html;
+    location / {
+        try_files $uri /index.html;
+    }
+}
+
+
+Enable and restart:
+
+sudo systemctl restart nginx
+sudo systemctl enable nginx
+
+
+🌍 Now you can access your site using server IP in browser.
+
+👨‍💻 Developer
+
+Sai Krishna H
+Frontend Developer | Vite + React
