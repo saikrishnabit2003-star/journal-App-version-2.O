@@ -37,9 +37,9 @@
 cd journal-frontend
 
 npm install
-npm run dev```
+npm run dev
 
----
+```
 ### 🔐 Authentication Flow
 
 - LocalStorage stores login state
