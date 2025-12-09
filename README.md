@@ -38,7 +38,6 @@ cd journal-frontend
 
 npm install
 npm run dev
-
 ```
 ### 🔐 Authentication Flow
 
