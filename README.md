@@ -53,5 +53,4 @@ localStorage.setItem("user", "active");```
 ```
 ### Logout:
 ```
-localStorage.removeItem("user");```
----
+localStorage.removeItem("user");
