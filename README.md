@@ -13,33 +13,19 @@
   <img src="https://img.shields.io/badge/Auth-LocalStorage-lightgrey" />
 </p>
 
-A **modular**, **scalable** FastAPI backend for:
-✔ Journal Management  
-✔ Excel Uploads & Updates  
-✔ Similarity-based Recommendations using **ChromaDB RAG Service**
-
+**📝Overview** :
+The Journal Suggestion Application allows users to log in, upload journal data, download templates, and manage journal information. This version includes only the frontend implementation with localStorage-based authentication for a single user.
 ---
 
-## 🚀 Core Features
+## ✨ Key Features
 
-### 📤 Excel Uploads (Bulk Insert)
-Supports `.xlsx` uploads:
-- Journal Data Insert  
-- Associate Data Insert  
-- Auto clean Excel issues (NaN, NaT, Excel errors)
+###✔ Single user login using localStorage
+###✔ Journal file upload & template download
+###✔ Modern and responsive UI
+###✔ Error handling for invalid data
+###✔ Fast build with Vite
+###✔ React Router navigation management
 
-### 🔄 Excel Update Logic
-- Match by `_id`  
-- Updates if record exists  
-- Inserts if missing  
-➡ Works for both **Journal** and **Associate** tables
-
-### 🔎 Smart Search + Vector Recommendations
-The RAG Service handles:
-- Vector Search  
-- Similarity Score  
-Backend enriches:
-- SQL Metadata + Vector Score
 
 📌 Ensures **accurate + enriched** results
 
