@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/badge/Auth-LocalStorage-lightgrey" />
 </p>
 
-###📝Overview** :
+### 📝Overview** :
 - The Journal Suggestion Application allows users to log in, upload journal data, download templates, and manage journal information. This version includes only the frontend implementation with localStorage-based authentication for a single user.
 ---
 
@@ -31,7 +31,7 @@
 - ✔ React Router navigation management  
 ---
 
-###🛠️ Installation & Setup
+### 🛠️ Installation & Setup
 
 ```bash
 git clone <repo_url>
