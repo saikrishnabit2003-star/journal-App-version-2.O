@@ -23,12 +23,12 @@
 
 ### ✨ Key Features
 
-- ✔ Single user login using LocalStorage  
-- ✔ Journal file upload & template download  
-- ✔ Modern and responsive UI  
-- ✔ Error handling for invalid data  
-- ✔ Fast build with Vite  
-- ✔ React Router navigation management  
+-  Single user login using LocalStorage  
+-  Journal file upload & template download  
+-  Modern and responsive UI  
+-  Error handling for invalid data  
+-  Fast build with Vite  
+-  React Router navigation management  
 ---
 
 ### 🛠️ Installation & Setup
