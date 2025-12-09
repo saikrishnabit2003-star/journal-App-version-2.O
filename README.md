@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/saikrishnabit2003-star/journal-App/blob/e3d863bc90ef231ca288caa99fced005481f7908/Screenshot%202025-12-09%20135423.png?raw=true" width="700" alt="Journal App Screenshot" />
+  <img src="https://github.com/saikrishnabit2003-star/journal-App/blob/e3d863bc90ef231ca288caa99fced005481f7908/Screenshot%202025-12-09%20135423.png?raw=true" width="800" alt="Journal App Screenshot" />
 </p>
 
 # ⚡ Journal Suggestion Application
@@ -31,10 +31,32 @@
 - ✔ React Router navigation management  
 
 
+##🛠️ Installation & Setup
+git clone <repo_url>
+cd journal-frontend
 
-📌 Ensures **accurate + enriched** results
+npm install
+npm run dev
 
----
 
-## 🧠 System Architecture
+Build for production:
 
+npm run build
+
+
+##🔐 Authentication Flow
+
+LocalStorage stores login state
+
+No multi-user handling
+
+Redirects automatically if already logged in
+
+Example:
+
+localStorage.setItem("user", "active");
+
+
+Logout:
+
+localStorage.removeItem("user");
