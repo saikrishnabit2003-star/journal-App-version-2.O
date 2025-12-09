@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/badge/Data-Fetch%20API-blue" />
   <img src="https://img.shields.io/badge/Auth-LocalStorage-lightgrey" />
 </p>
----
+
 ###📝Overview** :
 - The Journal Suggestion Application allows users to log in, upload journal data, download templates, and manage journal information. This version includes only the frontend implementation with localStorage-based authentication for a single user.
 ---
@@ -39,9 +39,10 @@ cd journal-frontend
 
 npm install
 npm run dev
+
 ---
 
-## 🔐 Authentication Flow
+### 🔐 Authentication Flow
 
 - LocalStorage stores login state
 - No multi-user handling (single user default login)
