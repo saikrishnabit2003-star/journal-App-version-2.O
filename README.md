@@ -50,7 +50,7 @@ npm run dev
 ```js
 localStorage.setItem("user", "active");```
 
+```
 ### Logout:
 ```
-
 localStorage.removeItem("user");```
