@@ -1,11 +1,11 @@
-# ⚡ FastAPI Journal Management & Recommendation Backend
+# ⚡ Journal Suggestion Application
 
-<p align="center">
+<!-- <p align="center">
   <img src="./public/backend_logo.png" width="120" alt="Backend Logo" />
-</p>
+</p> -->
 
 <p align="center">
-  <img src="https://img.shields.io/badge/FastAPI-0.111+-009688?logo=fastapi" />
+  <img src="https://media2.dev.to/dynamic/image/width=1000,height=500,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F3xdgj7v9vhogcr37ar7b.png" />
   <img src="https://img.shields.io/badge/PostgreSQL-AWS%20RDS-316192?logo=postgresql&logoColor=white" />
   <img src="https://img.shields.io/badge/VectorDB-ChromaDB-purple" />
   <img src="https://img.shields.io/badge/Deployed-AWS%20EC2-orange" />
