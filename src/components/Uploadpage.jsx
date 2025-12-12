@@ -36,7 +36,7 @@ export default function Uploadpage() {
   var formData = new FormData();
   formData.append("file", file);
 
-  fetch("http://13.219.182.76:8000/uploadfile-Journal/", {
+  fetch("https://journal-suggestion-backend-fastapi.vercel.app/uploadfile-Journal/", {
     method: "POST",
     body: formData,
   })
@@ -72,7 +72,7 @@ export default function Uploadpage() {
   var formDatas = new FormData();
   formDatas.append("file", assfile);
 
-  fetch("http://13.219.182.76:8000/upload-Assosiate/", {
+  fetch("https://journal-suggestion-backend-fastapi.vercel.app/upload-Assosiate/", {
     method: "POST",
     body: formDatas,
   })

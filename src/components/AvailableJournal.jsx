@@ -118,7 +118,7 @@ export default function AvailableJournal() {
     return;
   }
 
-  fetch("http://13.219.182.76:8000/forward-topic/jornal", {
+  fetch("https://journal-suggestion-backend-fastapi.vercel.app/forward-topic/jornal", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
