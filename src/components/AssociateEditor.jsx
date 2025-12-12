@@ -72,6 +72,8 @@ export default function AssociateEditor() {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log("Testing");
+      console.log(data);
       setTableData(Array.isArray(data.data) ? data.data : []);
       setShowTable(true);
     })
@@ -314,7 +316,7 @@ export default function AssociateEditor() {
                         <td>{item.Similarity_Score}</td>
                         <td>
                           <a href={item.Journal_Website}target="_blank" 
-                                                                rel="noopener noreferrer">{item.Journal_Website}</a>
+                          rel="noopener noreferrer">{item.Journal_Website}</a>
                         </td>
 
                         <td>{item.Journal_Username}</td>
