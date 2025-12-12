@@ -63,7 +63,7 @@ export default function AssociateEditor() {
     return;
   }
 
-  fetch("http://13.219.182.76:8000/forward-topic/Assosiate", {
+  fetch("https://journal-suggestion-backend-fastapi.vercel.app/forward-topic/Assosiate", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
