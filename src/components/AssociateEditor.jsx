@@ -38,7 +38,6 @@ export default function AssociateEditor() {
       "EI",
       "SCIE",
       "Scopus",
-      "SIE",
       "SSCI",
     ],
     APC: [
@@ -316,7 +315,7 @@ export default function AssociateEditor() {
                         <td>{item.Similarity_Score}</td>
                         <td>
                           <a href={item.Journal_Website}target="_blank" 
-                          rel="noopener noreferrer">{item.Journal_Website}</a>
+                          rel="noopener noreferrer">View</a>
                         </td>
 
                         <td>{item.Journal_Username}</td>

@@ -41,7 +41,7 @@ export default function Fontpage(){
                     </div>
                     <div className={style.container}>
                         <div className={style.btncontainer}>
-                            <button onClick={()=> nav("/Thirdpage")}>Suggest Journal</button>
+                            <button onClick={()=> nav("/AvailableJournal")}>Suggest Journal</button>
                         </div>
                         <div className={style.detcontainer}>
                             <h1>Suggest journal</h1>
