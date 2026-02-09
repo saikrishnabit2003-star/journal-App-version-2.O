@@ -17,7 +17,7 @@ function Loginpage({ setIsLoggedIn }) {   // ⭐ Receive prop
     if (name.toLowerCase() === username.toLowerCase() && password === pass) {
       localStorage.setItem("authToken", "my-fixed-token-12345");  //  Save token
       setIsLoggedIn(true);                                        //  Update app state
-      nav("/Homepage");                                       
+      nav("/AvailableJournal", { replace: true });  //  Redirect to homepage                                 
     } else {
       alert("username and password incorrect");
       setname("");
@@ -29,7 +29,7 @@ function Loginpage({ setIsLoggedIn }) {   // ⭐ Receive prop
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
       setIsLoggedIn(true);
-      nav("/Homepage", { replace: true });
+      nav("/AvailableJournal", { replace: true });
     }
   }, [nav, setIsLoggedIn]);
 

@@ -14,8 +14,8 @@ function Header({ setIsLoggedIn }) {
     <div>
       <div className="header">
         <div className="top">
-         <a href="/"> <img src={Logo} alt="Logo" /></a>
-         <a href="/"> <img src={text} alt="Logo" /></a>
+         <a href="/AvailableJournal"> <img src={Logo} alt="Logo" /></a>
+         <a href="/AvailableJournal"> <img src={text} alt="Logo" /></a>
           <button id="logbtn" onClick={logout}>Log out</button>
         </div>
       </div>

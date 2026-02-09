@@ -12,7 +12,9 @@ export default function AvailableJournal() {
   const [showMenu, setShowMenu] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [selectedRadio, setSelectedRadio] = useState(null);
-
+  const [value, setValue] = useState(0.35);
+  const [loading, setLoading] = useState(false);
+  
   const [filters, setFilters] = useState({
     Journal_Login_Status: [],
     Index: [],
@@ -24,7 +26,6 @@ export default function AvailableJournal() {
     APC: [],
   });
 
-  const [threshold, setThreshold] = useState("0.35");
   const [Modes, setModes] = useState("AUTO");
 
   // Define filters for PRIMARY/AUTO modes
@@ -121,24 +122,20 @@ export default function AvailableJournal() {
 
   const { mainItems, subFilters } = getCurrentFilters();
 
-  // Reset filters when mode changes
+  // Clear filters and hide table when mode changes
   useEffect(() => {
     handleClearFilters();
     setSelectedRadio(null);
+    setShowTable(false); // Hide the table when mode changes
+    
+    // DO NOT auto-fetch when mode changes
+    // User must click "Click to Search" button to fetch data
   }, [Modes]);
 
   // Handle input typing
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
     setShowTable(false);
-  };
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-
-    if (value === "" || (Number(value) >= 0 && Number(value) <= 1)) {
-      setThreshold(value);
-    }
   };
 
   // FETCH API on Button Click
@@ -150,20 +147,31 @@ export default function AvailableJournal() {
       return;
     }
 
-    fetch("http://127.0.0.1:8000/suggest", {
+    setLoading(true);
+    
+    fetch("https://journal-suggestion-app-v2.onrender.com/suggest", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title: search, topk: rowsLimit, weak_threshold: threshold, mode: Modes }),
+      body: JSON.stringify({ 
+        title: search, 
+        topk: rowsLimit, 
+        weak_threshold: value, 
+        mode: Modes 
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
-        setTableData(Array.isArray(data.data) ? data.data : []);
+        console.log("API Response:", data);
+        setTableData(Array.isArray(data.results) ? data.results : []);
         setShowTable(true);
-        console.log(data);
+        setLoading(false);
       })
-      .catch((err) => console.log("Error:", err));
+      .catch((err) => {
+        console.error("Error:", err);
+        setLoading(false);
+      });
   };
 
   // Filter selection
@@ -234,23 +242,41 @@ export default function AvailableJournal() {
       return;
     }
 
-    // CSV Headers
-    const headers = [
-      "S.No",
-      "Journal Name",
-      "Special Issue Name",
-      "Similarity Score",
-      "Journal Website",
-      "Journal Login Status",
-      "SI Open",
-      "Index",
-      "JCR Ranking",
-      "UAE Ranking",
-      "LetPub",
-      "SCIMAGO Ranking",
-      "Published Count",
-      "Rejected Count",
-    ];
+    // CSV Headers - Conditional based on mode
+    const headers = Modes === "ASSOCIATE_ONLY"
+      ? [
+          "S.No",
+          "Journal Name",
+          "final score",
+          "Special Issue keywords",
+          "Journal Website",
+          "primary domain",
+          "Index",
+          "Journal Login Status",
+          "APC",
+          "Published Count ",
+          "Rejected Count",
+          "source",
+        ]
+      : [
+          "S.No",
+          "Journal Name",
+          "Similarity Score",
+          "Special Issue Name",
+          "Primary Domain",
+          "Journal Website",
+          "Journal Login Status",
+          "Index",
+          "SI Open",
+          "API FEE",
+          "Source",
+          "Published Count",
+          "Rejected Count",
+          "JCR Ranking",
+          "UAE Ranking",
+          "LetPub",
+          "SCIMAGO Ranking",
+        ];
 
     // Escape CSV values (handle commas, quotes, newlines)
     const escapeCSV = (value) => {
@@ -262,26 +288,44 @@ export default function AvailableJournal() {
       return stringValue;
     };
 
-    // Create CSV rows
+    // Create CSV rows - Conditional based on mode
     const csvRows = [
       headers.join(","), // Header row
       ...filteredData.map((item, index) =>
-        [
-          index + 1,
-          escapeCSV(item.Journal_Name),
-          escapeCSV(item.Special_Issue_Name),
-          escapeCSV(item.Similarity_Score),
-          escapeCSV(item.Journal_Website),
-          escapeCSV(item.Journal_Login_Status),
-          escapeCSV(item.SI_Open),
-          escapeCSV(item.Index),
-          escapeCSV(item.JCR_Ranking),
-          escapeCSV(item.UAE_Ranking),
-          escapeCSV(item.LetPub),
-          escapeCSV(item.SCIMAGO_Ranking),
-          escapeCSV(item.pub_count_j),
-          escapeCSV(item.rej_count_j),
-        ].join(",")
+        Modes === "ASSOCIATE_ONLY"
+          ? [
+              index + 1,
+              escapeCSV(item.Journal_Name),
+              escapeCSV(item.final_score),
+              escapeCSV(item.Special_Issue_keywords),
+              escapeCSV(item.Journal_Website),
+              escapeCSV(item.primary_domain),
+              escapeCSV(item.Index),
+              escapeCSV(item.Journal_Login_Status),
+              escapeCSV(item.APC),
+              escapeCSV(item.pub_count_j),
+              escapeCSV(item.rej_count_j),
+              escapeCSV(item.source),
+            ].join(",")
+          : [
+              index + 1,
+              escapeCSV(item.Journal_Name),
+              escapeCSV(item.Similarity_Score),
+              escapeCSV(item.Special_Issue_Name),
+              escapeCSV(item.primary_domain),
+              escapeCSV(item.Journal_Website),
+              escapeCSV(item.Journal_Login_Status),
+              escapeCSV(item.Index),
+              escapeCSV(item.SI_Open),
+              escapeCSV(item.API_FEE),
+              escapeCSV(item.source),
+              escapeCSV(item.pub_count_j),
+              escapeCSV(item.rej_count_j),
+              escapeCSV(item.JCR_Ranking),
+              escapeCSV(item.UAE_Ranking),
+              escapeCSV(item.LetPub),
+              escapeCSV(item.SCIMAGO_Ranking),
+            ].join(",")
       ),
     ];
 
@@ -295,7 +339,7 @@ export default function AvailableJournal() {
 
     // Generate filename with timestamp
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, -5);
-    const fileName = `Journal_Results_${timestamp}.csv`;
+    const fileName = `Journal_Results_${Modes}_${timestamp}.csv`;
 
     link.setAttribute("href", url);
     link.setAttribute("download", fileName);
@@ -310,9 +354,9 @@ export default function AvailableJournal() {
       <div className={style.body}>
         {/* search area */}
         <div className={style.mainsearch}>
-          <button onClick={() => nav("/")} className={style.backButton}>
+          {/* <button onClick={() => nav("/")} className={style.backButton}>
             <img src={backButton} alt="Back" />
-          </button>
+          </button> */}
           <div className={style.searchContainer}>
             <div>
               <div>
@@ -342,18 +386,25 @@ export default function AvailableJournal() {
                 </select>
               </div>
             </div>
-            <div>
-              <input
-                className={style.weakThresholdInput}
-                type="number"
-                placeholder="Weak Threshold (0 - 1)"
-                min={0}
-                max={1}
-                step={0.01}
-                value={threshold}
-                onChange={handleChange}
-              />
+            
+              
+            <div className={style.sliderContainer}>
+              <div
+                className={style.valueBubble}
+                style={{ left: `${value * 100}%` }}
+              >
+                <span>Threshold value is:</span> {value}
+              </div>
 
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                className={style.slider}
+              />
               <select value={Modes} onChange={(e) => setModes(e.target.value)}>
                 <optgroup label="select the modes" id={style.optgroup}>
                   <option value={""} hidden>
@@ -366,11 +417,13 @@ export default function AvailableJournal() {
                 </optgroup>
               </select>
             </div>
+
+           
             <div>
               <div className={style.buttonContainer}>
                 <div>
-                  <button id={style.searchbtn} onClick={handleFetch}>
-                    Click to Search
+                  <button id={style.searchbtn} onClick={handleFetch} disabled={loading}>
+                    {loading ? "Loading..." : "Click to Search"}
                   </button>
                 </div>
                 <button type="button" onClick={() => setShowMenu(!showMenu)}>
@@ -463,7 +516,22 @@ export default function AvailableJournal() {
         {/* table */}
 
         <div>
-          {showTable && (
+          {loading && (
+            <div style={{ 
+              textAlign: "center", 
+              padding: "40px",
+              backgroundColor: "#f0f8ff",
+              borderRadius: "8px",
+              margin: "20px 0"
+            }}>
+              <h3 style={{ color: "#0066cc" }}>
+                🔄 Loading data...
+              </h3>
+              <p style={{ color: "#666" }}>Please wait while we fetch the results</p>
+            </div>
+          )}
+          
+          {showTable && !loading && (
             <div className={style.actualTable}>
               <div className={style.tableHeader}>
                 <h2>
@@ -477,63 +545,130 @@ export default function AvailableJournal() {
                   Download Results
                 </button>
               </div>
-              <table className={style.actualTableTag}>
-                <thead>
-                  <tr>
-                    <th>S_no</th>
-                    <th>Journal Name</th>
-                    <th>Special Issue Name</th>
-                    <th>Similarity Score</th>
-                    <th>Journal Website</th>
-                    <th>Journal Login Status</th>
-                    <th>SI Open</th>
-                    <th>Index</th>
-                    <th>JCR Ranking</th>
-                    <th>UAE Ranking</th>
-                    <th>LetPub</th>
-                    <th>SCIMAGO Ranking</th>
-                    <th>Published count</th>
-                    <th>Rejected count</th>
-                  </tr>
-                </thead>
 
-                <tbody>
-                  {filteredData.length > 0 ? (
-                    filteredData.map((item, index) => (
-                      <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>{item.Journal_Name}</td>
-                        <td>{item.Special_Issue_Name}</td>
-                        <td>{item.Similarity_Score}</td>
-                        <td>
-                          <a
-                            href={item.Journal_Website}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            View
-                          </a>
-                        </td>
-                        <td>{item.Journal_Login_Status}</td>
-                        <td>{item.SI_Open}</td>
-                        <td>{item.Index}</td>
-                        <td>{item.JCR_Ranking}</td>
-                        <td>{item.UAE_Ranking}</td>
-                        <td>{item.LetPub}</td>
-                        <td>{item.SCIMAGO_Ranking}</td>
-                        <td>{item.pub_count_j}</td>
-                        <td>{item.rej_count_j}</td>
-                      </tr>
-                    ))
-                  ) : (
+              {/* Conditional Table Rendering Based on Mode */}
+              {Modes === "ASSOCIATE_ONLY" ? (
+                // Associate Only Table
+                <table className={style.actualTableTag1}>
+                  <thead>         
                     <tr>
-                      <td colSpan="14" style={{ textAlign: "center" }}>
-                        No matching data found
-                      </td>
+                      <th>S.no</th>
+                      <th>Journal Name</th>
+                      <th>Final Score</th>
+                      <th>Special_Issue_keywords</th>
+                      <th>Journal Website</th>
+                      <th>Index</th>
+                      <th>Journal Login Status</th>
+                      <th>APC</th>
+                      <th>Published count</th>
+                      <th>Rejected count</th>
+                      <th>Source</th>
+                      
                     </tr>
-                  )}
-                </tbody>
-              </table>
+                  </thead>
+
+                  <tbody>
+                    {filteredData.length > 0 ? (
+                      filteredData.map((item, index) => (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{item.Journal_Name}</td>
+                          <td>{Math.round(item.final_score * 100)}%</td>
+                          <td>
+                            <div className={style.scrollCell}>
+                              {item.Special_Issue_keywords}
+                            </div>
+                          </td>
+                          <td>
+                            <a
+                              href={item.Journal_Website}
+                              target="_blank"
+                              rel="noopener noreferrer">
+                              View
+                            </a>
+                          </td>
+                          <td>{item.Index}</td>
+                          <td>{item.Journal_Login_Status}</td>
+                          <td>{item.APC}</td>
+                          <td>{item.pub_count_j}</td>
+                          <td>{item.rej_count_j}</td>
+                          <td>{item.source}</td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="11" style={{ textAlign: "center", padding: "40px" }}>
+                          No matching data found
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              ) : (
+                // Primary/Auto Table
+                <table className={style.actualTableTag}>
+                  <thead>
+                    <tr>
+                      <th>S.no</th>
+                      <th>Journal Name</th>
+                      <th>Final Score</th>
+                      <th>Special Issue Name</th>
+                      <th>Journal Website</th>
+                      <th>Journal Login Status</th>
+                      <th>Index</th>
+                      <th>SI Open</th>
+                      <th>APC FEE</th>
+                      <th>Source</th>
+                      <th>Published count</th>
+                      <th>Rejected count</th>
+                      <th>JCR Ranking</th>
+                      <th>UAE Ranking</th>
+                      <th>LetPub</th>
+                      <th>SCIMAGO Ranking</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {filteredData.length > 0 ? (
+                      filteredData.map((item, index) => (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{item.Journal_Name}</td>
+                          <td>{Math.round(item.final_score * 100)}%</td>
+                          <td>{item.Special_Issue_Name}</td>
+                          
+                          <td>
+                            <a
+                              href={item.Journal_Website}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              View
+                            </a>
+                          </td>
+                          <td>{item.Journal_Login_Status}</td>
+                          <td>{item.Index}</td>
+                          <td>{item.SI_Open}</td>
+                          <td>{item.APC_Fee}</td>
+                          <td>{item.source}</td>
+                          <td>{item.pub_count_j}</td>
+                          <td>{item.rej_count_j}</td>
+                          <td>{item.JCR_Ranking}</td>
+                          <td>{item.UAE_Ranking}</td>
+                          <td>{item.LetPub}</td>
+                          <td>{item.SCIMAGO_Ranking}</td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="16" style={{ textAlign: "center", padding: "40px" }}>
+                          No matching data found
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              )}
             </div>
           )}
         </div>

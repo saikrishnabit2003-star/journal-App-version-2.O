@@ -566,20 +566,19 @@
 }
 .actualTableTag thead th:nth-child(3),
 .actualTableTag tbody td:nth-child(3) {
-  width: 350px; 
+  width: 120px; 
+}
+.actualTableTag tbody td:nth-child(3) {
+  color: #e24343;
+}
+.actualTableTag thead th:nth-child(4),
+.actualTableTag tbody td:nth-child(4){
+  width: 300px;
   overflow-wrap: break-word;
-}
-.actualTableTag thead th:nth-child(4){
-  width: 150px; 
-}
-.actualTableTag tbody td:nth-child(4) {
-  color: #218838;
-  width: 150px; 
 }
 .actualTableTag thead th:nth-child(5),
 .actualTableTag tbody td:nth-child(5) {
   width: 150px;
-  overflow-wrap: break-word;
 }
 .actualTableTag thead th:nth-child(6),
 .actualTableTag tbody td:nth-child(6) {
@@ -602,9 +601,12 @@
 .actualTableTag tbody td:nth-child(10) {
   width: 120px; 
 }
+.actualTableTag tbody td:nth-child(10) {
+  color: #218838; 
+}
 .actualTableTag thead th:nth-child(11),
 .actualTableTag tbody td:nth-child(11) {
-  width: 120px; 
+  width: 140px; 
 }
 .actualTableTag thead th:nth-child(12),
 .actualTableTag tbody td:nth-child(12) {
@@ -620,6 +622,190 @@
   width: 140px; 
   overflow-wrap: break-word;
 }
+.actualTableTag thead th:nth-child(15),
+.actualTableTag tbody td:nth-child(15) {
+  width: 140px; 
+  overflow-wrap: break-word;
+}
+.actualTableTag thead th:nth-child(16),
+.actualTableTag tbody td:nth-child(16) {
+  width: 155px; 
+  overflow-wrap: break-word;
+}
+
+/* ASSO table */
+.actualTableTag1 {
+  width: 100%;
+  border-collapse: collapse;
+  /* display: block; */
+  
+  table-layout: fixed;
+}
+
+.actualTableTag1 thead {
+  position: sticky;
+  display: table;
+  top: 0;
+  z-index: 10;
+  background-color: #0056b3;
+  table-layout: fixed;
+  width: 100%;
+  
+}
+      
+.actualTableTag1 thead th {
+  text-align: center;
+  padding: 1rem;
+  font-weight: 600;
+  color: white;
+  border-bottom: 2px solid #004085;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  background-color: #0056b3;
+}
+
+.actualTableTag1 tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+
+.actualTableTag1 tbody tr {
+  transition: background-color 0.2s;
+}
+
+.actualTableTag1 tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.actualTableTag1 tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.actualTableTag1 tbody td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid #dee2e6;
+  text-align: center;
+}
+
+.actualTableTag1 tbody td a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.actualTableTag1 tbody td a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Table Scrollbar Styling */
+.actualTableTag1::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.actualTableTag1::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.actualTableTag1::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.actualTableTag1::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.actualTableTag1  th:nth-child(1),
+.actualTableTag1  td:nth-child(1) {
+  width: 100px;
+}
+.actualTableTag1  th:nth-child(2){
+  width: 300px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+.actualTableTag1  td:nth-child(2) {
+  width: 300px;
+  overflow-wrap: break-word;
+  text-align: left;
+}
+.actualTableTag1  th:nth-child(3),
+.actualTableTag1  td:nth-child(3) {
+  width: 100px;
+}
+.actualTableTag1  td:nth-child(3){
+  color: #e24343;
+}
+
+.actualTableTag1 thead th:nth-child(4) {
+  width: 500px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+.actualTableTag1 tbody td:nth-child(4) {
+  width: 500px;
+  overflow-wrap: break-word;
+  text-align: start;
+}
+.scrollCell {
+  max-height: 100px;       /* Visible height limit */
+  width: 500px;
+  overflow-y: auto;       /* Vertical scroll */
+  white-space: normal;    /* Text wrap */
+           /* So height works */
+  padding: 4px;
+}
+/* .actualTableTag1 tbody td:nth-child(2) {
+  width: 500px;
+  text-align: left;
+  display: block;     
+  max-height: 200px;    
+  overflow-y: auto;     
+  white-space: normal; 
+  padding: 8px;
+} */
+.actualTableTag1 thead th:nth-child(5),
+.actualTableTag1 tbody td:nth-child(5) {
+  width: 150px; 
+}
+
+.actualTableTag1 thead th:nth-child(6),
+.actualTableTag1 tbody td:nth-child(6) {
+  width: 120px
+}
+.actualTableTag1 thead th:nth-child(7),
+.actualTableTag1 tbody td:nth-child(7) {
+  width: 160px; 
+}
+.actualTableTag1 thead th:nth-child(8),
+.actualTableTag1 tbody td:nth-child(8) {
+  width: 100px; 
+}
+.actualTableTag1 thead th:nth-child(9),
+.actualTableTag1 tbody td:nth-child(9) {
+  width: 150px; 
+}
+.actualTableTag1 thead th:nth-child(10),
+.actualTableTag1 tbody td:nth-child(10) {
+  width: 150px; 
+}
+
+.actualTableTag1 thead th:nth-child(11) {
+  width: 150px;
+  text-align: center;
+}
+.actualTableTag1 tbody td:nth-child(11) {
+  width: 150px;
+  color:#218838 ;
+  text-align: center;
+}
+
+
 .downloadButton{
   background: #218838;
   color: white;
@@ -649,6 +835,33 @@
   animation: fadeInOverlay 0.3s ease-out;
   cursor: pointer;
 }
+
+/* slider-container */
+.slider-container{
+  display: flex;
+  flex-direction: column;
+  /* gap: 3rem; */
+  width: 100%;
+  border: 1px solid #000000;
+}
+.slider{
+  -webkit-appearance: none;
+  width: 200px;
+  height: 8px;
+  border-radius: 4px;
+  background: #358ae6;
+  margin-top: -50px;
+  cursor: pointer;
+}
+.valueBubble{
+  color: #007bff;
+  font-weight: 600;
+  font-size: 1rem;  
+}
+.valueBubble span{
+  font-weight: 600;
+  font-size: 1rem;  
+  color: #333;}
 
 @keyframes fadeInOverlay {
   from {
