@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 export default function AvailableJournal() {
   const nav = useNavigate();
   const [rowsLimit, setRowsLimit] = useState(5);
-
+  const Suggesturl="https://supplied-engage-weed-definitions.trycloudflare.com/suggest"
   const [search, setSearch] = useState("");
   const [TableData, setTableData] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
@@ -149,7 +149,7 @@ export default function AvailableJournal() {
 
     setLoading(true);
     
-    fetch("https://journal-suggestion-app-v2.onrender.com/suggest", {
+    fetch(Suggesturl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
