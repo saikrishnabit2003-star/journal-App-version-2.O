@@ -493,21 +493,50 @@ export default function AvailableJournal() {
                     />
                   </div> */}
                   <div>
+                   <div className={style.buttonContainer}>
+                <div>
                   <button id={style.searchbtn} onClick={handleFetch} disabled={loading}>
                     {loading ? "Loading..." : "Click to Search"}
                   </button>
+                </div>
+                <button type="button" onClick={() => setShowMenu(!showMenu)}>
+                  Show filters
+                </button>
+                {/* {activeFilters.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={handleClearFilters}
+                    className={style.clearBtn}
+                  >
+                    Clear ALL Filters ({activeFilters.length})
+                  </button>
+                )} */}
+              </div>
+              <div className={style.buttonContainer}>
+                {activeFilters.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={handleClearFilters}
+                    className={style.clearBtn}
+                  >
+                    Clear ALL Filters ({activeFilters.length})
+                  </button>
+                )}
+              </div>
+              
+
                 </div>
                 </div>
               </div>
             </div>
 
             <div>
-              <div className={style.buttonContainer}>
-                {/* <div>
+              {/* <div className={style.buttonContainer}>
+                <div>
                   <button id={style.searchbtn} onClick={handleFetch} disabled={loading}>
                     {loading ? "Loading..." : "Click to Search"}
                   </button>
-                </div> */}
+                </div>
                 <button type="button" onClick={() => setShowMenu(!showMenu)}>
                   Show filters
                 </button>
@@ -520,7 +549,7 @@ export default function AvailableJournal() {
                     Clear All Filters ({activeFilters.length})
                   </button>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
 
