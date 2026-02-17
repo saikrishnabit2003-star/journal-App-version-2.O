@@ -62,7 +62,7 @@
 }
 
 .searchContainer {
-  width: 100%;
+  width: 1250px;
   position: static;
   display: flex;
   flex-direction: column;
@@ -78,22 +78,52 @@
   
 }
 
-.searchContainer > div:first-child {
+.inputContainer{
+  display: flex;
+  flex-direction: row;
+  height: 300px;
+  /* border: 1px solid #6b850f; */
+  
+  width: 100%;
+  /* border: 1px solid #19a73d; */
+}
+
+.inputContainer div{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  /* border: 1px solid #19a73d; */
+}
+.searchDescription{
+  min-width: 100%;
+  min-height: 200px;
+  padding: 0.75rem 1rem;
+  border: 2px solid #ddd;
+  text-align: center;
+  
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  font-size: larger;
+}
+
+
+/* .searchContainer > div:first-child {
   width: 100%;
   max-width: 800px;
-}
+} */
 
 .searchContainer > div:first-child > div {
   display: flex;
   gap: 1rem;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   flex-wrap: wrap;
 }
 
 .searchContainer input[type="text"] {
-  flex: 1;
-  min-width: 250px;
+  min-width: 100%;
   padding: 0.75rem 1rem;
   border: 2px solid #ddd;
   text-align: center;
@@ -126,7 +156,7 @@
   font-size: 1rem;
   background-color: white;
   cursor: pointer;
-  min-width: 100px;
+  min-width: 90%;
 }
 
 .searchContainer select:focus {
@@ -559,63 +589,69 @@
 .actualTableTag  td:nth-child(1) {
   width: 100px;
 }
+
 .actualTableTag  th:nth-child(2),
 .actualTableTag  td:nth-child(2) {
   width: 300px;
   overflow-wrap: break-word;
 }
+.actualTableTag  td:nth-child(2){
+  text-align: left;
+}
 .actualTableTag thead th:nth-child(3),
 .actualTableTag tbody td:nth-child(3) {
-  width: 120px; 
-}
-.actualTableTag tbody td:nth-child(3) {
-  color: #e24343;
+  width: 200px; 
 }
 .actualTableTag thead th:nth-child(4),
-.actualTableTag tbody td:nth-child(4){
+.actualTableTag tbody td:nth-child(4) {
+  width: 120px; 
+}
+.actualTableTag tbody td:nth-child(4) {
+  color: #e24343;
+}
+.actualTableTag thead th:nth-child(5),
+.actualTableTag tbody td:nth-child(5){
   width: 300px;
   overflow-wrap: break-word;
 }
-.actualTableTag thead th:nth-child(5),
-.actualTableTag tbody td:nth-child(5) {
-  width: 150px;
+.actualTableTag tbody td:nth-child(5){
+  text-align: left;
 }
 .actualTableTag thead th:nth-child(6),
 .actualTableTag tbody td:nth-child(6) {
-  width: 180px; 
-  
+  width: 150px;
 }
 .actualTableTag thead th:nth-child(7),
 .actualTableTag tbody td:nth-child(7) {
-  width: 150px; 
+  width: 180px; 
+  
 }
 .actualTableTag thead th:nth-child(8),
 .actualTableTag tbody td:nth-child(8) {
-  width: 100px; 
+  width: 150px; 
 }
 .actualTableTag thead th:nth-child(9),
 .actualTableTag tbody td:nth-child(9) {
-  width: 150px; 
+  width: 100px; 
 }
 .actualTableTag thead th:nth-child(10),
 .actualTableTag tbody td:nth-child(10) {
-  width: 120px; 
-}
-.actualTableTag tbody td:nth-child(10) {
-  color: #218838; 
+  width: 150px; 
 }
 .actualTableTag thead th:nth-child(11),
 .actualTableTag tbody td:nth-child(11) {
-  width: 140px; 
+  width: 120px; 
+}
+.actualTableTag tbody td:nth-child(11) {
+  color: #218838; 
 }
 .actualTableTag thead th:nth-child(12),
 .actualTableTag tbody td:nth-child(12) {
-  width: 180px; 
+  width: 140px; 
 }
 .actualTableTag thead th:nth-child(13),
 .actualTableTag tbody td:nth-child(13) {
-  width: 140px; 
-  overflow-wrap: break-word;
+  width: 180px; 
 }
 .actualTableTag thead th:nth-child(14),
 .actualTableTag tbody td:nth-child(14) {
@@ -629,6 +665,11 @@
 }
 .actualTableTag thead th:nth-child(16),
 .actualTableTag tbody td:nth-child(16) {
+  width: 140px; 
+  overflow-wrap: break-word;
+}
+.actualTableTag thead th:nth-child(17 ),
+.actualTableTag tbody td:nth-child(17) {
   width: 155px; 
   overflow-wrap: break-word;
 }
@@ -805,6 +846,187 @@
   text-align: center;
 }
 
+/* FLEXIBLE TABLE */
+.actualTableTag2 {
+  width: 100%;
+  border-collapse: collapse;
+  /* display: block; */
+  table-layout: fixed;
+}
+
+.actualTableTag2 thead {
+  position: sticky;
+  display: table;
+  top: 0;
+  z-index: 10;
+  background-color: #0056b3;
+  table-layout: fixed;
+  width: 100%;
+  
+}
+      
+.actualTableTag2 thead th {
+  text-align: center;
+  padding: 1rem;
+  font-weight: 600;
+  color: white;
+  border-bottom: 2px solid #004085;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  background-color: #0056b3;
+}
+
+.actualTableTag2 tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+
+.actualTableTag2 tbody tr {
+  transition: background-color 0.2s;
+}
+
+.actualTableTag2 tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.actualTableTag2 tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.actualTableTag2 tbody td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid #dee2e6;
+  text-align: center;
+}
+
+.actualTableTag2 tbody td a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.actualTableTag2 tbody td a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Table Scrollbar Styling */
+.actualTableTag2::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.actualTableTag2::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.actualTableTag2::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.actualTableTag2::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.actualTableTag2  th:nth-child(1),
+.actualTableTag2  td:nth-child(1) {
+  width: 100px;
+}
+.actualTableTag2  th:nth-child(2){
+  width: 300px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+.actualTableTag2  td:nth-child(2) {
+  width: 300px;
+  overflow-wrap: break-word;
+  text-align: left;
+}
+.actualTableTag2  th:nth-child(3){
+  width: 200px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+.actualTableTag2  td:nth-child(3) {
+  width: 200px;
+  overflow-wrap: break-word;
+  text-align: left;
+}
+.actualTableTag2  th:nth-child(4),
+.actualTableTag2  td:nth-child(4) {
+  width: 100px;
+}
+.actualTableTag2  td:nth-child(4){
+  color: #e24343;
+}
+
+.actualTableTag2 thead th:nth-child(5) {
+  width: 500px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+.actualTableTag2 tbody td:nth-child(5) {
+  width: 500px;
+  overflow-wrap: break-word;
+  text-align: start;
+}
+.scrollCell {
+  max-height: 100px;       /* Visible height limit */
+  width: 500px;
+  overflow-y: auto;       /* Vertical scroll */
+  white-space: normal;    /* Text wrap */
+           /* So height works */
+  padding: 4px;
+}
+/* .actualTableTag1 tbody td:nth-child(2) {
+  width: 500px;
+  text-align: left;
+  display: block;     
+  max-height: 200px;    
+  overflow-y: auto;     
+  white-space: normal; 
+  padding: 8px;
+} */
+.actualTableTag2 thead th:nth-child(6),
+.actualTableTag2 tbody td:nth-child(6) {
+  width: 150px; 
+}
+
+.actualTableTag2 thead th:nth-child(7),
+.actualTableTag2 tbody td:nth-child(7) {
+  width: 160px; 
+}
+.actualTableTag2 thead th:nth-child(8),
+.actualTableTag2 tbody td:nth-child(8) {
+  width: 100px; 
+}
+.actualTableTag2 thead th:nth-child(9),
+.actualTableTag2 tbody td:nth-child(9) {
+  width: 150px; 
+}
+.actualTableTag2 tbody td:nth-child(9){
+  color:#218838 ;
+}
+.actualTableTag2 thead th:nth-child(10),
+.actualTableTag2 tbody td:nth-child(10) {
+  width: 150px; 
+}
+
+.actualTableTag2 thead th:nth-child(11) {
+  width: 150px;
+  text-align: center;
+}
+.actualTableTag2 tbody td:nth-child(11) {
+  width: 150px;
+  
+  text-align: center;
+}
+
+
 
 .downloadButton{
   background: #218838;
@@ -837,31 +1059,43 @@
 }
 
 /* slider-container */
-.slider-container{
-  display: flex;
+.sliderContainer{
+   display: flex;
   flex-direction: column;
-  /* gap: 3rem; */
+  /* gap: 1.5rem; */
   width: 100%;
-  border: 1px solid #000000;
+  height: 100%;
+  /* border: 1px solid #19a73d; */
+  justify-content: space-between;
+}
+.sliderContainer div{
+  width: 70%;
+  height: 85px;
+  /* border: 1px dotted red; */
+  justify-content: center;
+  align-items: center;
+  text-align: center ;
 }
 .slider{
   -webkit-appearance: none;
-  width: 200px;
+  width: 300px;
   height: 8px;
   border-radius: 4px;
   background: #358ae6;
   margin-top: -50px;
   cursor: pointer;
+  align-self: center;
 }
 .valueBubble{
   color: #007bff;
   font-weight: 600;
-  font-size: 1rem;  
+  font-size: 1rem;
 }
 .valueBubble span{
   font-weight: 600;
   font-size: 1rem;  
   color: #333;}
+
 
 @keyframes fadeInOverlay {
   from {
@@ -911,6 +1145,7 @@
   .searchContainer input[type="text"],
   .searchContainer select {
     width: 100%;
+    
   }
 
   .actualTableTag {
@@ -930,4 +1165,256 @@
   .body {
     padding: 1rem;
   }
+}
+.tableWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.scrollBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.scrollBtn:hover {
+  opacity: 1;
+}
+
+.left {
+  left: 5px;
+}
+
+.right {
+  right: 5px;
+}
+
+
+/* =================================================================
+   QUICK COPY-PASTE: STYLED SCROLLBARS FOR YOUR JOURNAL APP
+   Replace your current scrollbar CSS with this
+   ================================================================= */
+
+/* Main Table Vertical Scrollbar - BLUE THEME */
+.actualTable::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.actualTable::-webkit-scrollbar-track {
+  background: #e3f2fd;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 123, 255, 0.1);
+}
+
+.actualTable::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #5ea9e6 0%, #1976D2 100%);
+  border-radius: 10px;
+  border: 2px solid #e3f2fd;
+  transition: all 0.3s ease;
+}
+
+.actualTable::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #1976D2 0%, #0D47A1 100%);
+  border-color: #bbdefb;
+  box-shadow: 0 0 6px rgba(33, 150, 243, 0.5);
+}
+
+.actualTable::-webkit-scrollbar-thumb:active {
+  background: #0D47A1;
+}
+
+.actualTable {
+  scrollbar-width: thin;
+  scrollbar-color: #2196F3 #e3f2fd;
+}
+
+/* Horizontal Table Container Scrollbar */
+.tableContainer::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+  background: #e3f2fd;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 123, 255, 0.1);
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #2196F3 0%, #1976D2 100%);
+  border-radius: 10px;
+  border: 2px solid #e3f2fd;
+  transition: all 0.3s ease;
+}
+
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #1976D2 0%, #0D47A1 100%);
+  border-color: #bbdefb;
+  box-shadow: 0 0 6px rgba(33, 150, 243, 0.5);
+}
+
+.tableContainer::-webkit-scrollbar-thumb:active {
+  background: #0D47A1;
+}
+
+.tableContainer {
+  scrollbar-width: thin;
+  scrollbar-color: #2196F3 #e3f2fd;
+}
+
+/* Table cells scrollbar (actualTableTag) */
+.actualTableTag::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.actualTableTag::-webkit-scrollbar-track {
+  background: #f0f8ff;
+  border-radius: 8px;
+}
+
+.actualTableTag::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #42a5f5 0%, #2196F3 100%);
+  border-radius: 8px;
+  border: 2px solid #e3f2fd;
+}
+
+.actualTableTag::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2196F3 0%, #1976D2 100%);
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.4);
+}
+
+/* Table cells scrollbar (actualTableTag1) */
+.actualTableTag1::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.actualTableTag1::-webkit-scrollbar-track {
+  background: #f0f8ff;
+  border-radius: 8px;
+}
+
+.actualTableTag1::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #42a5f5 0%, #2196F3 100%);
+  border-radius: 8px;
+  border: 2px solid #e3f2fd;
+}
+
+.actualTableTag1::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2196F3 0%, #1976D2 100%);
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.4);
+}
+
+/* Table cells scrollbar (actualTableTag2) */
+.actualTableTag2::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.actualTableTag2::-webkit-scrollbar-track {
+  background: #f0f8ff;
+  border-radius: 8px;
+}
+
+.actualTableTag2::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #42a5f5 0%, #2196F3 100%);
+  border-radius: 8px;
+  border: 2px solid #e3f2fd;
+}
+
+.actualTableTag2::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2196F3 0%, #1976D2 100%);
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.4);
+}
+
+/* Keywords Cell Scrollbar */
+.scrollCell::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollCell::-webkit-scrollbar-track {
+  background: #f0f8ff;
+  border-radius: 6px;
+}
+
+.scrollCell::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #42a5f5 0%, #2196F3 100%);
+  border-radius: 6px;
+  border: 1px solid #e3f2fd;
+}
+
+.scrollCell::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2196F3 0%, #1976D2 100%);
+  box-shadow: 0 0 4px rgba(33, 150, 243, 0.4);
+}
+
+.scrollCell {
+  scrollbar-width: thin;
+  scrollbar-color: #42a5f5 #f0f8ff;
+}
+
+/* Filter Menu Scrollbar */
+.menuContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.menuContainer::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.menuContainer::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4CAF50 0%, #45a049 100%);
+  border-radius: 8px;
+  border: 2px solid #f5f5f5;
+}
+
+.menuContainer::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #45a049 0%, #3d8b40 100%);
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+}
+
+.menuContainer {
+  scrollbar-width: thin;
+  scrollbar-color: #4CAF50 #f5f5f5;
+}
+
+/* Submenu Scrollbar */
+#submenu::-webkit-scrollbar {
+  width: 8px;
+}
+
+#submenu::-webkit-scrollbar-track {
+  background: #fafafa;
+  border-radius: 6px;
+}
+
+#submenu::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #64B5F6 0%, #42a5f5 100%);
+  border-radius: 6px;
+  border: 1px solid #e3f2fd;
+}
+
+#submenu::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #42f593 0%, #2196F3 100%);
+}
+
+#submenu {
+  scrollbar-width: thin;
+  scrollbar-color: #64B5F6 #fafafa;
 }
