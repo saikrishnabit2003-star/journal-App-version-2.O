@@ -477,7 +477,7 @@ export default function AvailableJournal() {
                 </div>
 
                 <div>
-                  <div className={style.sliderWrapper}>
+                  {/* <div className={style.sliderWrapper}>
                     <span className={style.thresholdText}>
                       Threshold value is: <b>{value}</b>
                     </span>
@@ -491,18 +491,23 @@ export default function AvailableJournal() {
                       onChange={(e) => setValue(e.target.value)}
                       className={style.slider}
                     />
-                  </div>
+                  </div> */}
+                  <div>
+                  <button id={style.searchbtn} onClick={handleFetch} disabled={loading}>
+                    {loading ? "Loading..." : "Click to Search"}
+                  </button>
+                </div>
                 </div>
               </div>
             </div>
 
             <div>
               <div className={style.buttonContainer}>
-                <div>
+                {/* <div>
                   <button id={style.searchbtn} onClick={handleFetch} disabled={loading}>
                     {loading ? "Loading..." : "Click to Search"}
                   </button>
-                </div>
+                </div> */}
                 <button type="button" onClick={() => setShowMenu(!showMenu)}>
                   Show filters
                 </button>
