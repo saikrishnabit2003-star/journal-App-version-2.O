@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 
 export default function AvailableJournal() {
 
-  const suggesturl = "https://ingredients-euros-edmonton-normal.trycloudflare.com/suggest";
+  const suggesturl = "https://reunion-stories-background-annie.trycloudflare.com/suggest";
   const nav = useNavigate();
   const [rowsLimit, setRowsLimit] = useState(5);
   const [search, setSearch] = useState("");
