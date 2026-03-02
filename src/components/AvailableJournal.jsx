@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 
 export default function AvailableJournal() {
 
-  const suggesturl = "https://nextel-extras-suggests-mission.trycloudflare.com/suggest";
+  const suggesturl = "https://pastor-url-concept-refer.trycloudflare.com/suggest";
   const nav = useNavigate();
   const [rowsLimit, setRowsLimit] = useState(5);
   const [search, setSearch] = useState("");
