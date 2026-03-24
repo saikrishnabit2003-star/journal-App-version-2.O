@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 
 export default function AvailableJournal() {
 
-  const suggesturl = "https://pricing-christmas-congratulations-johnson.trycloudflare.com/suggest";
+  const suggesturl = "https://journal-suggestion-app-v3.vercel.app/suggest";
   const nav = useNavigate();
   const [rowsLimit, setRowsLimit] = useState(5);
   const [search, setSearch] = useState("");
