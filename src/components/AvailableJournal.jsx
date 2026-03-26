@@ -48,8 +48,27 @@ export default function AvailableJournal() {
       });
     }
   };
+  const autoFilters = {
+    mainItems: [
+      "Index",
+      "APC"
+    ],
+    subFilters: {
+      Index: [
+        "EI",
+        "SCIE",
+        "Scopus",
+        "SSCI",
+        "N/A",
+        "Non indexed journal",
+      ],
+      APC: [
+        "N/A"
+      ]
+    }
+  }
 
-  // Define filters for PRIMARY/AUTO modes
+  // Define filters for modes
   const primaryFilters = {
     mainItems: [
       "Journal_Login_Status",
@@ -59,6 +78,7 @@ export default function AvailableJournal() {
       "UAE_Ranking",
       "LetPub",
       "SCIMAGO_Ranking",
+      "APC"
     ],
     subFilters: {
       Journal_Login_Status: [
@@ -116,6 +136,7 @@ export default function AvailableJournal() {
       ],
       LetPub: ["N/A", "Zone 1", "Zone 2", "Zone 3", "Zone 4"],
       SCIMAGO_Ranking: ["N/A", "Q1", "Q2", "Q3", "Q4"],
+      APC: ["N/A"],
     },
   };
 
@@ -135,27 +156,48 @@ export default function AvailableJournal() {
   };
 
   const flexibleFilters = {
-    mainItems: ["Index"],
+    mainItems: ["Index", "APC"],
     subFilters: {
-      Index: ["EI", "Not indexed", "SCIE", "Scopus", "SSCI"],
+      Index: ["EI", "SCIE", "Scopus", "SSCI"],
+      APC: ["N/A"],
     },
   };
 
   // Get current filter configuration based on mode
   const getCurrentFilters = () => {
-    return Modes === "ASSOCIATE_ONLY"
-      ? associateFilters
-      : Modes === "FLEXIBLE_ONLY"
-        ? flexibleFilters
-        : primaryFilters;
+    if (Modes === "ASSOCIATE_ONLY") return associateFilters;
+    if (Modes === "FLEXIBLE_ONLY") return flexibleFilters;
+    if (Modes === "AUTO") return autoFilters;
+    return primaryFilters; // Default to primaryFilters for PRIMARY_ONLY or others
   };
 
   const { mainItems, subFilters } = getCurrentFilters();
 
-  // Load demo data when mode changes
+  // Preserve and validate filters that are compatible with the new mode when mode changes
   useEffect(() => {
-    handleClearFilters();
-    setSelectedRadio(null);
+    // Only keep filter categories and values that are in the new mainItems and subFilters
+    setFilters((prev) => {
+      const updatedFilters = { ...prev };
+      Object.keys(updatedFilters).forEach((key) => {
+        if (!mainItems.includes(key)) {
+          // Category not available in new mode, clear it
+          updatedFilters[key] = [];
+        } else {
+          // Category is available, but check if selected values are still valid in new subFilters
+          const validSubFilters = subFilters[key] || [];
+          updatedFilters[key] = updatedFilters[key].filter((val) =>
+            validSubFilters.includes(val)
+          );
+        }
+      });
+      return updatedFilters;
+    });
+
+    // Reset selected radio if it's no longer one of the main items in the new mode
+    if (selectedRadio && !mainItems.includes(selectedRadio)) {
+      setSelectedRadio(null);
+    }
+
     setTableData([]); // Clear previous results
     setShowTable(false); // Hide the table until a new search is performed
   }, [Modes]);
@@ -493,16 +535,16 @@ export default function AvailableJournal() {
                     />
                   </div> */}
                   <div>
-                   <div className={style.buttonContainer}>
-                <div>
-                  <button id={style.searchbtn} onClick={handleFetch} disabled={loading}>
-                    {loading ? "Loading..." : "Click to Search"}
-                  </button>
-                </div>
-                <button type="button" onClick={() => setShowMenu(!showMenu)}>
-                  Show filters
-                </button>
-                {/* {activeFilters.length > 0 && (
+                    <div className={style.buttonContainer}>
+                      <div>
+                        <button id={style.searchbtn} onClick={handleFetch} disabled={loading}>
+                          {loading ? "Loading..." : "Click to Search"}
+                        </button>
+                      </div>
+                      <button type="button" onClick={() => setShowMenu(!showMenu)}>
+                        Show filters
+                      </button>
+                      {/* {activeFilters.length > 0 && (
                   <button
                     type="button"
                     onClick={handleClearFilters}
@@ -511,21 +553,21 @@ export default function AvailableJournal() {
                     Clear ALL Filters ({activeFilters.length})
                   </button>
                 )} */}
-              </div>
-              <div className={style.buttonContainer}>
-                {activeFilters.length > 0 && (
-                  <button
-                    type="button"
-                    onClick={handleClearFilters}
-                    className={style.clearBtn}
-                  >
-                    Clear ALL Filters ({activeFilters.length})
-                  </button>
-                )}
-              </div>
-              
+                    </div>
+                    <div className={style.buttonContainer}>
+                      {activeFilters.length > 0 && (
+                        <button
+                          type="button"
+                          onClick={handleClearFilters}
+                          className={style.clearBtn}
+                        >
+                          Clear ALL Filters ({activeFilters.length})
+                        </button>
+                      )}
+                    </div>
 
-                </div>
+
+                  </div>
                 </div>
               </div>
             </div>
